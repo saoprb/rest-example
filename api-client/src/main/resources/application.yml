@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: api-client
+
+server:
+  port: 9002
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    healthcheck:
+      enabled: true
+  instance:
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+      api-resource:
+        loggerLevel: full
+        connectTimeout: 5000
+        readTimeout: 5000
+  hystrix:
+    enabled: true
+
+ribbon:
+  api-resource:
+    eureka:
+      enabled: true
+
+logging:
+  level:
+    org.springframework: INFO
+    com.netflix.hystrix: DEBUG
+    com.rest.example.apiclient: TRACE
