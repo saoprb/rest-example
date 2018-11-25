@@ -24,6 +24,18 @@ management:
 
 logging:
   level:
-    org.springframework: DEBUG
+    org.springframework: INFO
     com.netflix.hystrix: DEBUG
     com.rest.example.apiresource: TRACE
+
+---
+
+spring:
+  profiles: test
+  discovery:
+    enabled: false
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false

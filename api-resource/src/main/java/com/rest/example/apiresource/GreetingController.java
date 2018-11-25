@@ -11,14 +11,16 @@ import java.util.Random;
 public class GreetingController {
 
     @GetMapping("/greeting/{username}")
-    public String greeting(@PathVariable("username") String username) {
+    public GreetingModel greeting(@PathVariable("username") String username) {
 
-        int randomInt = new Random(new Date().getTime()).nextInt();
-
-        if (randomInt % 10 == 0) {
-            throw new RuntimeException("Api failure");
+        if (getRandom() % 10 == 0) {
+            throw new GreetingControllerException("Api failure");
         }
 
-        return String.format("Hello %s!\n", username);
+        return new GreetingModel(String.format("Hello %s!%n", username));
+    }
+
+    protected int getRandom() {
+        return new Random(new Date().getTime()).nextInt();
     }
 }

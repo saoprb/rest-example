@@ -44,3 +44,15 @@ logging:
     org.springframework: INFO
     com.netflix.hystrix: DEBUG
     com.rest.example.apiclient: TRACE
+
+---
+
+spring:
+  profiles: test
+  discovery:
+    enabled: false
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
