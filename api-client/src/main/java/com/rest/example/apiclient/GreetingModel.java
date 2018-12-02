@@ -1,4 +1,4 @@
-package com.rest.example.apiresource;
+package com.rest.example.apiclient;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

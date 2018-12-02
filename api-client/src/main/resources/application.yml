@@ -22,6 +22,13 @@ management:
       exposure:
         include: hystrix.stream
 
+api-resource:
+  ribbon:
+    retryableStatusCodes: 500
+    MaxAutoRetries: 3
+    MaxAutoRetriesNextServer: 3
+    OkToRetryOnAllOperations: true
+
 feign:
   client:
     config:
@@ -35,15 +42,15 @@ feign:
     enabled: true
 
 ribbon:
-  api-resource:
-    eureka:
-      enabled: true
+  eureka:
+    enabled: true
 
 logging:
   level:
     org.springframework: INFO
     com.netflix.hystrix: DEBUG
     com.rest.example.apiclient: TRACE
+    com.rest.example.apiclient.GreetingClient: TRACE
 
 ---
 

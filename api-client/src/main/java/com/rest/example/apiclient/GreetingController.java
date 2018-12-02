@@ -12,7 +12,7 @@ public class GreetingController {
     private GreetingClient greetingClient;
 
     @GetMapping("/greeting/{username}")
-    public String greeting(@PathVariable("username") String username) {
+    public GreetingModel greeting(@PathVariable("username") String username) {
         return greetingClient.greeting(username);
     }
 }
